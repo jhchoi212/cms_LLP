@@ -8,4 +8,5 @@ inFile = ROOT.TFile.Open(inFileName,"READ")
 
 tree = inFile.Get("ntuple0/objects")
 ver = inFile.Get("ntuple0/objects/vz")
-tree.show()
+print(tree)
+print(ver)
