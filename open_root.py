@@ -1,4 +1,4 @@
-import ROOT
+import ROOT, sys
 import numpy as np
 
 inFileName = sys.argv[1]
