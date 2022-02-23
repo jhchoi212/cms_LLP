@@ -38,26 +38,27 @@ trainingFullData = []
 #One-Hot Encoding for Particle Type
 def scalePartType(a, n):
 	if n==11:
-		a.extend((1,0,0,0,0,0,0,0,0)) #Electron
+		a.extend((1,0,0,0,0,0,0,0,0,0)) #Electron
 	elif n==-11:
-		a.extend((0,1,0,0,0,0,0,0,0)) #Positron
+		a.extend((0,1,0,0,0,0,0,0,0,0)) #Positron
 	elif n==13:
-		a.extend((0,0,1,0,0,0,0,0,0)) #Muon
+		a.extend((0,0,1,0,0,0,0,0,0,0)) #Muon
 	elif n==-13:
-		a.extend((0,0,0,1,0,0,0,0,0)) #Anti-Muon
+		a.extend((0,0,0,1,0,0,0,0,0,0)) #Anti-Muon
 	elif n==22:
-		a.extend((0,0,0,0,1,0,0,0,0)) #Photon
+		a.extend((0,0,0,0,1,0,0,0,0,0)) #Photon
 	elif n==130:
-		a.extend((0,0,0,0,0,1,0,0,0)) #Neutral Meson
+		a.extend((0,0,0,0,0,1,0,0,0,0)) #Neutral Meson
 	elif n==211:
-		a.extend((0,0,0,0,0,0,1,0,0)) #Pion
+		a.extend((0,0,0,0,0,0,1,0,0,0)) #Pion
 	elif n==-211:
-		a.extend((0,0,0,0,0,0,0,1,0)) #Anti-Pion
-## Find PDG Id for LLP in root file
-    #elif n== 100000000000000:
-        #a.extend((0,0,0,0,0,0,0,0,1))
+		a.extend((0,0,0,0,0,0,0,1,0,0)) #Anti-Pion
+    	elif n== 1000006:
+        	a.extend((0,0,0,0,0,0,0,0,1,0))
+	elif n== -1000006:
+        	a.extend((0,0,0,0,0,0,0,0,0,1))
     else:
-		a.extend((0,0,0,0,0,0,0,0)) #Case for unknown particle
+		a.extend((0,0,0,0,0,0,0,0,0,0)) #Case for unknown particle
 
 #Scaling Phi for particles relative to their jet
 def signedDeltaPhi(phi1, phi2):
@@ -140,7 +141,7 @@ for entryNum in range(eventNum):
 			jetPartList.append(0)
 			for e in range(len(tree.gen)):
                 ## For abs(tree.gen[e][1])==5, find correct PDG id for reco
-				if abs(tree.gen[e][1])==5 and (e not in bannedLLPs) and abs(tree.gen[e][0].Eta())<2.3:
+				if abs(tree.gen[e][1])==1000006 and (e not in bannedLLPs) and abs(tree.gen[e][0].Eta())<2.3:
 					if tree.gen[e][0].DeltaR(tempTLV)<=0.4:
 						jetPartList[-1]=1
 						LLPCount+=1
